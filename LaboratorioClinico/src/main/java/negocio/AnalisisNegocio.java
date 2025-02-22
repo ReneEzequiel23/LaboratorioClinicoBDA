@@ -8,8 +8,12 @@ import dtos.AnalisisDTO;
 import dtos.AnalisisTablaDTO;
 import dtos.EditarAnalisisDTO;
 import dtos.GuardarAnalisisDTO;
+import entidades.AnalisisEntidad;
+import entidades.ClienteEntidad;
+import java.util.ArrayList;
 import java.util.List;
 import persistencia.IAnalisisDAO;
+import persistencia.PersistenciaException;
 
 /**
  *
@@ -24,12 +28,25 @@ public class AnalisisNegocio implements IAnalisisNegocio{
 
     @Override
     public List<AnalisisTablaDTO> buscarAnalisis() throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    try {
+            List<AnalisisEntidad> analisisEntidadLista = this.analisisDAO.buscarAnalisis(); //2
+
+            return this.convertirAnalisisTablaDTO(analisisEntidadLista);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
     }
 
     @Override
     public AnalisisDTO guardar(GuardarAnalisisDTO analisis) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+             this.validarInformacionGuardarAnalisis(analisis);
+
+             AnalisisEntidad analisisGuardado = this.analisisDAO.guardar(analisis);
+            return this.convertirAnalisisDTO(analisisGuardado);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException(ex.getMessage());
+        }
     }
 
     @Override
@@ -45,6 +62,41 @@ public class AnalisisNegocio implements IAnalisisNegocio{
     @Override
     public AnalisisDTO buscarPorId(int id) throws NegocioException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private List<AnalisisTablaDTO> convertirAnalisisTablaDTO(List<AnalisisEntidad> analisisEntidadLista) {
+        if (analisisEntidadLista == null) {
+            return null;
+        }
+        
+        List<AnalisisTablaDTO> analisisLista = new ArrayList<>();
+        
+        for (AnalisisEntidad entidad : analisisEntidadLista) {
+            AnalisisTablaDTO dato = new AnalisisTablaDTO(
+            entidad.getId(),
+            entidad.getFechaHora(),
+            entidad.getIdCliente(),
+            entidad.isEstaBorrado());
+            
+            analisisLista.add(dato);
+        }
+        
+        return analisisLista;
+    }
+
+    private AnalisisDTO convertirAnalisisDTO(AnalisisEntidad analisis) {
+        if (analisis == null) {
+            return null;
+        }
+        return new AnalisisDTO(
+        analisis.getId(),
+        analisis.getFechaHora(),
+        analisis.getIdCliente(),
+        analisis.isEstaBorrado());
+    }
+
+    private void validarInformacionGuardarAnalisis(GuardarAnalisisDTO analisis) {
+        System.out.println("VAlidacionDeGuardado");
     }
     
     

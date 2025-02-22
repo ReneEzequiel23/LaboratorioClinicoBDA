@@ -14,7 +14,9 @@ import java.time.Month;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import negocio.AnalisisNegocio;
 import negocio.ClienteNegocio;
+import negocio.IAnalisisNegocio;
 import negocio.IClienteNegocio;
 import negocio.NegocioException;
 import persistencia.AnalisisDAO;
@@ -44,17 +46,14 @@ public class LaboratorioClinico {
         IClienteNegocio clienteNegocio = new ClienteNegocio(cliente);
         
         IAnalisisDAO analisisDAO = new AnalisisDAO(conexion);
-        GuardarAnalisisDTO gAnalisis = new GuardarAnalisisDTO(LocalDateTime.of(2022, Month.MARCH, 12, 4, 24), 2);
+        GuardarAnalisisDTO gAnalisis = new GuardarAnalisisDTO(LocalDateTime.of(2024, Month.MAY, 12, 4, 24), 1);
         EditarAnalisisDTO eAnalisis = new EditarAnalisisDTO(2,LocalDateTime.of(2014, Month.MAY, 11, 7, 34), 1, false);
         
+        IAnalisisNegocio analisisNegocio = new AnalisisNegocio(analisisDAO);
+        
         try {
-            
-            for (int i = 0; i < analisisDAO.buscarAnalisis().size(); i++) {
-                System.out.println(analisisDAO.buscarAnalisis().get(i));
-            }
-            
-            analisisDAO.eliminar(1);
-        } catch (PersistenciaException ex) {
+            analisisNegocio.guardar(gAnalisis);
+        } catch (NegocioException ex) {
             Logger.getLogger(LaboratorioClinico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

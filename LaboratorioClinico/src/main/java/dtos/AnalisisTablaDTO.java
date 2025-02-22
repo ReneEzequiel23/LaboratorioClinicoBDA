@@ -57,5 +57,10 @@ public class AnalisisTablaDTO {
     public void setEstaBorrado(boolean estaBorrado) {
         this.estaBorrado = estaBorrado;
     }
+
+    @Override
+    public String toString() {
+        return "AnalisisTablaDTO{" + "id=" + id + ", fechaHora=" + fechaHora + ", idCliente=" + idCliente + ", estaBorrado=" + estaBorrado + '}';
+    }
     
 }

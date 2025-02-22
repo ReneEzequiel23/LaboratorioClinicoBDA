@@ -62,8 +62,10 @@ public class AnalisisEntidad {
 
     @Override
     public String toString() {
-        return "AnalisisEntidad{" + "fechaHora=" + fechaHora + ", idCliente=" + idCliente + ", estaBorrado=" + estaBorrado + '}';
+        return "AnalisisEntidad{" + "id=" + id + ", fechaHora=" + fechaHora + ", idCliente=" + idCliente + ", estaBorrado=" + estaBorrado + '}';
     }
+
+    
     
     
 }

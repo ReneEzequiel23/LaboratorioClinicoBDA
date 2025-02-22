@@ -52,7 +52,7 @@ public class ClienteNegocio implements IClienteNegocio {
     @Override
     public ClienteDTO guardar(GuardarClienteDTO cliente) throws NegocioException {
         try {
-            this.validarInformacionGuardarCliente(cliente);
+             this.validarInformacionGuardarCliente(cliente);
 
             ClienteEntidad clienteGuardado = this.clienteDAO.guardar(cliente);
             return this.convertirClienteDTO(clienteGuardado);

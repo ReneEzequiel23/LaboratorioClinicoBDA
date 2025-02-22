@@ -4,11 +4,13 @@ persistencia\ParametroDAO.class
 entidades\RegistroEntidad.class
 dtos\EditarClienteDTO.class
 entidades\CategoriaEntidad.class
+dtos\AnalisisTablaDTO.class
 entidades\ResultadoEntidad.class
 entidades\ClienteEntidad.class
 entidades\ParametroEntidad.class
 negocio\NegocioException.class
 persistencia\IClienteDAO.class
+dtos\AnalisisDTO.class
 entidades\AnalisisEntidad.class
 entidades\PruebaEntidad.class
 persistencia\ResultadoDAO.class
@@ -17,6 +19,7 @@ dtos\GuardarAnalisisDTO.class
 persistencia\PruebaDAO.class
 dtos\GuardarClienteDTO.class
 persistencia\ClienteDAO.class
+negocio\AnalisisNegocio.class
 persistencia\CategoriaDAO.class
 persistencia\PersistenciaException.class
 negocio\IClienteNegocio.class
@@ -24,6 +27,7 @@ dtos\ClienteDTO.class
 dtos\EditarAnalisisDTO.class
 persistencia\AnalisisDAO.class
 com\mycompany\laboratorioclinico\LaboratorioClinico.class
+negocio\IAnalisisNegocio.class
 persistencia\IConexionBD.class
 persistencia\RegistroDAO.class
 persistencia\ConexionBD.class
